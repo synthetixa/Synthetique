@@ -1,0 +1,16 @@
+[
+{
+  "modid": "synthetique",
+  "name": "Synthetique",
+  "description": "A Minecraft mod about the creation and application of sound.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Synthetixa"],
+  "credits": "The FOrge and FML guys for making Forge in the first place. Pahimar, Vazkii, and Azanor for indirectly inspiring my modding.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
