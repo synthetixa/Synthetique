@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "synthetique:blocks/oscillator_top_side",
+    "front": "synthetique:blocks/oscillator_output_side",
+    "side": "synthetique:blocks/oscillator_other_sides",
+    "particle": "blocks/iron_block"
+  }
+}

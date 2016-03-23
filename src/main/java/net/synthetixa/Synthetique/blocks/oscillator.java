@@ -1,7 +1,6 @@
 package net.synthetixa.Synthetique.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,11 +18,11 @@ public class oscillator extends Block {
 
     public static final PropertyDirection FACING;
 
-    public oscillator(Material material) {
+    public oscillator(Material material, String unlocalizedName) {
         super(material);
         this.setCreativeTab(CreativeTabs.tabRedstone);
         this.setHardness(1.0F);
-        this.setUnlocalizedName("oscillator");
+        this.setUnlocalizedName(unlocalizedName);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
