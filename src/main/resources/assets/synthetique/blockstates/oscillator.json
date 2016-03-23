@@ -1,5 +1,8 @@
 {
   "variants": {
-    "normal": { "model": "synthetique:oscillator" }
+    "facing=north": { "model": "synthetique:oscillator" },
+    "facing=south": { "model": "synthetique:oscillator", "y": 180 },
+    "facing=west":  { "model": "synthetique:oscillator", "y": 270 },
+    "facing=east":  { "model": "synthetique:oscillator", "y": 90 }
   }
 }
