@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "synthetique:blocks/oscillator_other_sides",
+    "up": "synthetique:blocks/oscillator_top_side",
+    "north": "synthetique:blocks/oscillator_output_side",
+    "east": "synthetique:blocks/oscillator_other_sides",
+    "south": "synthetique:blocks/oscillator_power_side",
+    "west": "synthetique:blocks/oscillator_other_sides",
+    "particle": "blocks/iron_block"
+  }
+}
