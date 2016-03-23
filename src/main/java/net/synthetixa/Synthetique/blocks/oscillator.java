@@ -2,6 +2,7 @@ package net.synthetixa.Synthetique.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -10,11 +11,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class oscillator extends Block {
+public class oscillator extends Block implements ITileEntityProvider{
 
     public static final PropertyDirection FACING;
 
@@ -79,6 +82,36 @@ public class oscillator extends Block {
 
     static {
         FACING = BlockHorizontal.FACING;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int i) {
+        return new OscillatorTileEntity();
+    }
+
+    public boolean canConnectRedstone(IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        if (side == null) return false;
+        if (side == EnumFacing.UP || side == EnumFacing.DOWN) return false;
+        if (side == EnumFacing.NORTH) return false;
+
+        // we can connect to three of the four side faces - if the block is facing north, then we can
+        //  connect to WEST, SOUTH, or EAST.
+
+        EnumFacing whichFaceOfOsc = side.getOpposite();
+        IBlockState blockState = world.getBlockState(pos);
+        EnumFacing blockFacingDirection = (EnumFacing)blockState.getValue(FACING);
+
+        if (whichFaceOfOsc == blockFacingDirection) return false;
+        return true;
+    }
+
+    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+
+        if(worldIn.isBlockPowered(pos)){
+            worldIn.setBlockToAir(pos);
+        }
+
     }
 
 }

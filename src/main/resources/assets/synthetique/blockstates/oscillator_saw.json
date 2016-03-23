@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "synthetique:oscillator_saw" },
+    "facing=south": { "model": "synthetique:oscillator_saw", "y": 180 },
+    "facing=west":  { "model": "synthetique:oscillator_saw", "y": 270 },
+    "facing=east":  { "model": "synthetique:oscillator_saw", "y": 90 }
+  }
+}
