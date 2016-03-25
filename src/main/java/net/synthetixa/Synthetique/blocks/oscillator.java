@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -127,22 +128,22 @@ public class oscillator extends Block implements ITileEntityProvider{
 
         if(worldIn.isBlockPowered(pos)){
             if(blockNorth.equals(synthBlocks.speaker)){
-                worldIn.playSound(northPos.getX(), northPos.getY(), northPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, northPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
             else if(blockSouth.equals(synthBlocks.speaker)){
-                worldIn.playSound(southPos.getX(), southPos.getY(), southPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, southPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
             else if(blockWest.equals(synthBlocks.speaker)){
-                worldIn.playSound(westPos.getX(), westPos.getY(), westPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, westPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
             else if(blockEast.equals(synthBlocks.speaker)){
-                worldIn.playSound(eastPos.getX(), eastPos.getY(), eastPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, eastPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
             else if(blockUp.equals(synthBlocks.speaker)){
-                worldIn.playSound(upPos.getX(), upPos.getY(), upPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, upPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
             else if(blockDown.equals(synthBlocks.speaker)){
-                worldIn.playSound(downPos.getX(), downPos.getY(), downPos.getZ(), SoundEvents.block_note_snare, SoundCategory.RECORDS, 1.0F, 1.0F, true);
+                worldIn.playSound((EntityPlayer)null, downPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }
         }
 
