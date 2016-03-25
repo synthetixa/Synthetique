@@ -1,9 +1,12 @@
 {
-  "parent": "block/orientable",
+  "parent": "block/cube_all",
   "textures": {
-    "top": "synthetique:blocks/oscillator_top_side",
-    "front": "synthetique:blocks/oscillator_output_side",
-    "side": "synthetique:blocks/oscillator_other_sides",
+    "up": "synthetique:blocks/oscillator_other_sides",
+    "north": "synthetique:blocks/oscillator_output_side",
+    "south": "synthetique:blocks/oscillator_output_side",
+    "west": "synthetique:blocks/oscillator_output_side",
+    "east": "synthetique:blocks/oscillator_output_side",
+    "down": "synthetique:blocks/oscillator_other_sides",
     "particle": "blocks/iron_block"
   }
 }
