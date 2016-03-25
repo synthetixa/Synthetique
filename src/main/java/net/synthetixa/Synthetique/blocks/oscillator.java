@@ -5,6 +5,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -23,6 +24,7 @@ import net.minecraft.world.World;
 public class oscillator extends Block implements ITileEntityProvider{
 
     public static final PropertyDirection FACING;
+    public static final PropertyBool ISAUDIOOSC = PropertyBool.create("isAudioOsc");
 
     public oscillator(Material material, String unlocalizedName) {
         super(material);
@@ -30,6 +32,7 @@ public class oscillator extends Block implements ITileEntityProvider{
         this.setHardness(1.0F);
         this.setUnlocalizedName(unlocalizedName);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(ISAUDIOOSC, true));
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
@@ -125,26 +128,46 @@ public class oscillator extends Block implements ITileEntityProvider{
         Block blockUp = worldIn.getBlockState(upPos).getBlock();
         Block blockDown = worldIn.getBlockState(downPos).getBlock();
 
+        if (ISAUDIOOSC.equals(true)){
+            if(worldIn.isBlockPowered(pos)){
 
-        if(worldIn.isBlockPowered(pos)){
-            if(blockNorth.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, northPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                System.out.println("Oscillator is audio.");
+
+                if(blockNorth.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, northPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
+                else if(blockSouth.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, southPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
+                else if(blockWest.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, westPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
+                else if(blockEast.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, eastPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
+                else if(blockUp.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, upPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
+                else if(blockDown.equals(synthBlocks.speaker)){
+                    worldIn.playSound((EntityPlayer)null, downPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                }
             }
-            else if(blockSouth.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, southPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
+        }
+        else if(ISAUDIOOSC.equals(false)){
+            if(worldIn.isBlockPowered(pos)) {
+                System.out.println("Oscillator is non-audio.");
             }
-            else if(blockWest.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, westPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
-            }
-            else if(blockEast.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, eastPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
-            }
-            else if(blockUp.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, upPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
-            }
-            else if(blockDown.equals(synthBlocks.speaker)){
-                worldIn.playSound((EntityPlayer)null, downPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
-            }
+        }
+
+    }
+
+    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
+
+        if(worldIn.getBlockState(pos).getValue(ISAUDIOOSC).equals(true)){
+            worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(ISAUDIOOSC, false));
+        }
+        else if(worldIn.getBlockState(pos).getValue(ISAUDIOOSC).equals(false)){
+            worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(ISAUDIOOSC, true));
         }
 
     }
