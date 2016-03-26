@@ -12,7 +12,7 @@ import net.synthetixa.Synthetique.common.CommonProxy;
 public class SynthMod
 {
     public static final String MODID = "synthetique";
-    public static final String VERSION = "0.0.2";
+    public static final String VERSION = "0.0.4";
 
     @SidedProxy(clientSide = "net.synthetixa.Synthetique.client.ClientProxy", serverSide = "net.synthetixa.Synthetique.server.ServerProxy")
     public static CommonProxy proxy;

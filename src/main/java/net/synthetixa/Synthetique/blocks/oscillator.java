@@ -16,6 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -72,8 +73,6 @@ public class oscillator extends Block implements ITileEntityProvider{
         if (worldIn.getBlockState(pos).getValue(TYPE).equals(0)){
             if(worldIn.isBlockPowered(pos)){
 
-                System.out.println("Oscillator is audio.");
-
                 if(blockNorth.equals(synthBlocks.speaker)){
                     worldIn.playSound((EntityPlayer)null, northPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, 1.0F);
                 }
@@ -96,12 +95,10 @@ public class oscillator extends Block implements ITileEntityProvider{
         }
         else if(worldIn.getBlockState(pos).getValue(TYPE).equals(1)){
             if(worldIn.isBlockPowered(pos)) {
-                System.out.println("Oscillator is LFO.");
             }
         }
         else if(worldIn.getBlockState(pos).getValue(TYPE).equals(2)){
             if(worldIn.isBlockPowered(pos)){
-                System.out.println("Oscillator is push.");
             }
         }
 
@@ -110,15 +107,15 @@ public class oscillator extends Block implements ITileEntityProvider{
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 
         if(state.getValue(TYPE).equals(0)){
-            System.out.println("Switching oscillator state from audio to LFO.");
+            playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from audio to LFO. (this won't make sound)"));
             worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 1));
         }
         else if(state.getValue(TYPE).equals(1)){
-            System.out.println("Switching oscillator state from LFO to push.");
+            playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from LFO to push. (this won't make sound)"));
             worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 2));
         }
         else if(state.getValue(TYPE).equals(2)) {
-            System.out.println("Switching oscillator state from push to audio.");
+            playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from push to audio. (this will make sound)"));
             worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 0));
         }
 
