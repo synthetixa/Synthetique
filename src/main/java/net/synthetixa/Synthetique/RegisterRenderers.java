@@ -23,6 +23,8 @@ public class RegisterRenderers {
                 .register(Item.getItemFromBlock(synthBlocks.speaker), 0, new ModelResourceLocation(modid + ":" + "speaker", "inventory"));
 
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(synthItems.screwdriver, 0, new ModelResourceLocation(modid + ":" + "screwdriver", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(synthItems.capacitor, 0, new ModelResourceLocation(modid + ":" + "capacitor", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(synthItems.resistor, 0, new ModelResourceLocation(modid + ":" + "resistor", "inventory"));
@@ -30,6 +32,8 @@ public class RegisterRenderers {
                 .register(synthItems.opamp, 0, new ModelResourceLocation(modid + ":" + "opamp", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(synthItems.fivefivefive, 0, new ModelResourceLocation(modid + ":" + "555", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(synthItems.tuner, 0, new ModelResourceLocation(modid + ":" + "tuner", "inventory"));
     }
 
 }

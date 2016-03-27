@@ -15,6 +15,7 @@ public class OscillatorTileEntity extends TileEntity implements ITickable
 {
 
 
+
     @Override
     public void update() {
 
@@ -23,11 +24,15 @@ public class OscillatorTileEntity extends TileEntity implements ITickable
     @Override
     public void writeToNBT(NBTTagCompound compound){
         super.writeToNBT(compound);
+        float pitch = oscillator.getPitch();
+        compound.setFloat("note", pitch);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound){
         super.readFromNBT(compound);
+        float pitch = compound.getFloat("note");
+        oscillator.setPitchFromNBT(pitch);
     }
 
 }
