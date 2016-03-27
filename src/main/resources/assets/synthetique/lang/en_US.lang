@@ -7,3 +7,5 @@ item.555.name=555 Timer
 item.opamp.name=Operational Amplifier
 item.capacitor.name=Electrolytic Capacitor
 item.resistor.name=Resistor
+item.screwdriver.name=Phillips Screwdriver
+item.tuner.name=Electric Tuner
