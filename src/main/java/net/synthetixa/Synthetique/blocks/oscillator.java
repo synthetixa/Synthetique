@@ -8,6 +8,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -15,15 +16,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.synthetixa.Synthetique.items.synthItems;
 
+import java.util.List;
+
 public class oscillator extends Block implements ITileEntityProvider{
 
-    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 2);// 0 = audio, 1 = lfo, 2 = push
+    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 2); // 0 = audio, 1 = lfo, 2 = push
     public static float pitch;
 
     public oscillator(Material material, String unlocalizedName) {
@@ -86,7 +90,7 @@ public class oscillator extends Block implements ITileEntityProvider{
                 }
                 else if(blockEast.equals(synthBlocks.speaker)){
                     worldIn.playSound((EntityPlayer)null, eastPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, pitch);
-                }
+                 }
                 else if(blockUp.equals(synthBlocks.speaker)){
                     worldIn.playSound((EntityPlayer)null, upPos, SoundEvents.block_note_harp, SoundCategory.BLOCKS, 3.0F, pitch);
                 }
@@ -101,6 +105,7 @@ public class oscillator extends Block implements ITileEntityProvider{
         }
         else if(worldIn.getBlockState(pos).getValue(TYPE).equals(2)){
             if(worldIn.isBlockPowered(pos)){
+
             }
         }
 
