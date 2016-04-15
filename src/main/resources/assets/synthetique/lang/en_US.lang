@@ -2,6 +2,7 @@ tile.oscillator.name=Square Wave Oscillator
 tile.oscillator_saw.name=Saw Wave Oscillator
 tile.oscillator_sine.name=Sine Wave Oscillator
 tile.speaker.name=8 Ohm Speaker
+tile.cabinet.name=Modular Cabinet
 
 item.555.name=555 Timer
 item.opamp.name=Operational Amplifier

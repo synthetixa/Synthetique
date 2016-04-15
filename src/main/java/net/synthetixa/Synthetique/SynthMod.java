@@ -12,7 +12,7 @@ import net.synthetixa.Synthetique.common.CommonProxy;
 public class SynthMod
 {
     public static final String MODID = "synthetique";
-    public static final String VERSION = "0.0.4";
+    public static final String VERSION = "0.0.6";
 
     @SidedProxy(clientSide = "net.synthetixa.Synthetique.client.ClientProxy", serverSide = "net.synthetixa.Synthetique.server.ServerProxy")
     public static CommonProxy proxy;
@@ -20,16 +20,16 @@ public class SynthMod
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        this.proxy.preInit(event);
+        proxy.preInit(event);
     }
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        this.proxy.init(event);
+        proxy.init(event);
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        this.proxy.postInit(event);
+        proxy.postInit(event);
     }
 }

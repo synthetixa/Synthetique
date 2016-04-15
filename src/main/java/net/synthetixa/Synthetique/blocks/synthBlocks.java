@@ -10,18 +10,21 @@ public class synthBlocks {
     public static Block oscillator_sine;
     public static Block oscillator_saw;
     public static Block speaker;
+    public static Block cabinet;
 
-    public static void initBlocks(){
+    public static void initBlocks() {
 
         oscillator = new oscillator(Material.iron, "oscillator");
         oscillator_sine = new oscillator(Material.iron, "oscillator_sine");
         oscillator_saw = new oscillator(Material.iron, "oscillator_saw");
         speaker = new speaker(Material.iron, "speaker");
+        cabinet = new cabinet(Material.wood, "cabinet");
 
         GameRegistry.registerBlock(oscillator, "oscillator");
         GameRegistry.registerBlock(oscillator_sine, "oscillator_sine");
         GameRegistry.registerBlock(oscillator_saw, "oscillator_saw");
         GameRegistry.registerBlock(speaker, "speaker");
+        GameRegistry.registerBlock(cabinet, "cabinet");
     }
 
 }

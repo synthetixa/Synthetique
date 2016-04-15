@@ -7,6 +7,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -14,11 +15,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.synthetixa.Synthetique.items.synthItems;
+
+import java.util.List;
 
 public class oscillator extends Block implements ITileEntityProvider{
 
@@ -98,6 +102,16 @@ public class oscillator extends Block implements ITileEntityProvider{
                 }
             } else if (worldIn.getBlockState(pos).getValue(TYPE).equals(2)) {
                 if (worldIn.isBlockPowered(pos)) {
+
+                    double x1 = pos.east(5).north(2).getX();
+                    double y1 = pos.east(5).north(2).getY();
+                    double z1 = pos.east(5).north(2).getZ();
+
+                    double x2 = pos.west(5).south(2).getX();
+                    double y2 = pos.west(5).south(2).getY();
+                    double z2 = pos.west(5).south(2).getZ();
+
+                    List entitiesInBB = worldIn.getEntitiesWithinAABB(EntityLiving.class, new AxisAlignedBB(x1, y1, z1, x2, y2, z2));
 
                 }
             }
