@@ -20,8 +20,6 @@ public class RegisterRenderers {
                 .register(Item.getItemFromBlock(synthBlocks.oscillator_saw), 0, new ModelResourceLocation(modid + ":" + "oscillator_saw", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(Item.getItemFromBlock(synthBlocks.speaker), 0, new ModelResourceLocation(modid + ":" + "speaker", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(Item.getItemFromBlock(synthBlocks.cabinet), 0, new ModelResourceLocation(modid + ":" + "cabinet", "inventory"));
 
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(synthItems.screwdriver, 0, new ModelResourceLocation(modid + ":" + "screwdriver", "inventory"));
