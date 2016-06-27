@@ -2,6 +2,7 @@ package net.synthetixa.Synthetique.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.synthetixa.Synthetique.SynthMod;
 
 public class IC extends Item {
 
@@ -11,6 +12,7 @@ public class IC extends Item {
 
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setRegistryName(SynthMod.MODID, "integrated_circuit");
     }
 
 }

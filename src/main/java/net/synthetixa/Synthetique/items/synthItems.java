@@ -20,12 +20,12 @@ public class synthItems {
         fivefivefive = new IC("555");
         tuner = new tool("tuner");
 
-        GameRegistry.registerItem(screwdriver, "screwdriver");
-        GameRegistry.registerItem(capacitor, "capacitor");
-        GameRegistry.registerItem(resistor, "resistor");
-        GameRegistry.registerItem(opamp, "opamp");
-        GameRegistry.registerItem(fivefivefive, "555");
-        GameRegistry.registerItem(tuner, "tuner");
+        GameRegistry.register(screwdriver);
+        GameRegistry.register(capacitor);
+        GameRegistry.register(resistor);
+        GameRegistry.register(opamp);
+        GameRegistry.register(fivefivefive);
+        GameRegistry.register(tuner);
     }
 
 }

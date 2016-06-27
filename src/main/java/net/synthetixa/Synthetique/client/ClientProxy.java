@@ -3,7 +3,6 @@ package net.synthetixa.Synthetique.client;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.synthetixa.Synthetique.RegisterRenderers;
 import net.synthetixa.Synthetique.common.CommonProxy;
 
 public class ClientProxy extends CommonProxy{

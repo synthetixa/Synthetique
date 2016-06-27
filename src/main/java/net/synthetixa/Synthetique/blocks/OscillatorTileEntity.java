@@ -1,16 +1,25 @@
 package net.synthetixa.Synthetique.blocks;
 
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class OscillatorTileEntity extends TileEntity implements ITickable
+public class OscillatorTileEntity extends TileEntity
 {
 
     public float pitch = 0.1F;
 
-    @Override
-    public void update() {
+    public static void changeSound(BlockPos pos, World worldIn) {
+
+        if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(0)) {
+            oscillator.sound = SoundEvents.block_note_pling;
+        } else if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(1)) {
+            oscillator.sound = SoundEvents.block_note_snare;
+        } else if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(2)) {
+            oscillator.sound = null;
+        }
 
     }
 

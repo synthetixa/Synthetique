@@ -1,8 +1,9 @@
-package net.synthetixa.Synthetique;
+package net.synthetixa.Synthetique.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.synthetixa.Synthetique.SynthMod;
 import net.synthetixa.Synthetique.blocks.synthBlocks;
 import net.synthetixa.Synthetique.items.synthItems;
 
@@ -15,11 +16,8 @@ public class RegisterRenderers {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(Item.getItemFromBlock(synthBlocks.oscillator), 0, new ModelResourceLocation(modid + ":" + "oscillator", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(Item.getItemFromBlock(synthBlocks.oscillator_sine), 0, new ModelResourceLocation(modid + ":" + "oscillator_sine", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(Item.getItemFromBlock(synthBlocks.oscillator_saw), 0, new ModelResourceLocation(modid + ":" + "oscillator_saw", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(Item.getItemFromBlock(synthBlocks.speaker), 0, new ModelResourceLocation(modid + ":" + "speaker", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(synthBlocks.patchCable), 0, new ModelResourceLocation(modid + ":" + "cable", "inventory"));
 
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(synthItems.screwdriver, 0, new ModelResourceLocation(modid + ":" + "screwdriver", "inventory"));
