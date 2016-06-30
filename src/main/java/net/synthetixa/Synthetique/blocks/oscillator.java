@@ -16,6 +16,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.synthetixa.Synthetique.SynthMod;
 import net.synthetixa.Synthetique.items.synthItems;
@@ -29,15 +30,11 @@ public class oscillator extends Block implements ITileEntityProvider{
 
     public oscillator(Material material, String unlocalizedName) {
         super(material);
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setCreativeTab(CreativeTabs.REDSTONE);
         this.setHardness(1.0F);
         this.setUnlocalizedName(unlocalizedName);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, 0));
         this.setRegistryName(SynthMod.MODID, "oscillator");
-    }
-
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(TYPE, Integer.valueOf(meta));
     }
 
     public int getMetaFromState(IBlockState state){
@@ -53,9 +50,11 @@ public class oscillator extends Block implements ITileEntityProvider{
         return new OscillatorTileEntity();
     }
 
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    @Override
+    public void onNeighborChange(IBlockAccess worldIn, BlockPos pos, BlockPos neighborBlock) {
 
-        isPowered = worldIn.isBlockPowered(pos);
+        World world = worldIn.getTileEntity(pos).getWorld();
+        isPowered = world.isBlockPowered(pos);
 
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -77,24 +76,24 @@ public class oscillator extends Block implements ITileEntityProvider{
             Block blockUp = worldIn.getBlockState(upPos).getBlock();
             Block blockDown = worldIn.getBlockState(downPos).getBlock();
 
-            OscillatorTileEntity.changeSound(pos, worldIn);
+            OscillatorTileEntity.changeSound(pos, world);
 
             if (worldIn.getBlockState(pos).getValue(TYPE).equals(0) || worldIn.getBlockState(pos).getValue(TYPE).equals(1)) {
 
-                if (worldIn.isBlockPowered(pos)) {
+                if (isPowered) {
 
                     if (blockNorth.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, northPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, northPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockSouth.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, southPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, southPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockWest.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, westPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, westPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockEast.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, eastPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, eastPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockUp.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, upPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, upPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockDown.equals(synthBlocks.speaker)) {
-                        worldIn.playSound(null, downPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, downPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     }
                 }
             } else if (worldIn.getBlockState(pos).getValue(TYPE).equals(2)) {

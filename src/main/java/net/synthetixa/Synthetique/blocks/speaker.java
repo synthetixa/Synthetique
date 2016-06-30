@@ -9,7 +9,7 @@ public class speaker extends Block {
 
     public speaker(Material material, String unlocalizedName) {
         super(material);
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setCreativeTab(CreativeTabs.REDSTONE);
         this.setHardness(1.0F);
         this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(SynthMod.MODID, "speaker");

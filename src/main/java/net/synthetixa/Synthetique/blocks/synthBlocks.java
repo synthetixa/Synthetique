@@ -14,9 +14,9 @@ public class synthBlocks {
 
     public static void initBlocks() {
 
-        oscillator = new oscillator(Material.iron, "oscillator");
-        speaker = new speaker(Material.iron, "speaker");
-        patchCable = new cable(Material.clay, "patch_cable");
+        oscillator = new oscillator(Material.IRON, "oscillator");
+        speaker = new speaker(Material.IRON, "speaker");
+        patchCable = new cable(Material.CLAY, "cable");
 
         GameRegistry.register(oscillator);
         GameRegistry.register(new ItemBlock(oscillator), oscillator.getRegistryName());

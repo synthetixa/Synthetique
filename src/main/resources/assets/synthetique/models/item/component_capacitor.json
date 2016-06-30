@@ -1,7 +1,7 @@
 {
-  "parent":"builtin/generated",
+  "parent": "item/generated",
   "textures": {
-    "layer0":"synthetique:items/opamp_or_555"
+    "layer0":"synthetique:items/capacitor"
   },
   "display": {
     "thirdperson": {

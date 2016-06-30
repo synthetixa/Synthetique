@@ -11,8 +11,8 @@ public class component extends Item {
         super();
 
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(CreativeTabs.tabRedstone);
-        this.setRegistryName(SynthMod.MODID, "component");
+        this.setCreativeTab(CreativeTabs.REDSTONE);
+        this.setRegistryName(SynthMod.MODID, "component_" + unlocalizedName);
     }
 
 }

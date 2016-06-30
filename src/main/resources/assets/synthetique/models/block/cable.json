@@ -2,8 +2,8 @@
   "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
   "ambientocclusion": false,
   "textures": {
-    "0": "blocks/cable_insulation",
-    "1": "blocks/cable_ends"
+    "0": "synthetique:blocks/cable_insulation",
+    "1": "synthetique:blocks/cable_ends"
   },
   "elements": [
     {

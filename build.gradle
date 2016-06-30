@@ -12,14 +12,14 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.10-0.0.7"
+version = "1.10.2-0.0.7"
 group = "net.synthetixa.Synthetique"
 archivesBaseName = "synthetique"
 
 minecraft {
-    version = "1.10-12.18.0.1997-1.10.0"
+    version = "1.10.2-12.18.0.2002-1.10.0"
     runDir = "run"
-    mappings = "snapshot_20160609"
+    mappings = "snapshot_20160627"
 }
 
 processResources

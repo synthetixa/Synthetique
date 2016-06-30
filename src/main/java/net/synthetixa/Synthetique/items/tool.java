@@ -11,8 +11,8 @@ public class tool extends Item {
         super();
 
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(CreativeTabs.tabTools);
-        this.setRegistryName(SynthMod.MODID, "tool");
+        this.setCreativeTab(CreativeTabs.TOOLS);
+        this.setRegistryName(SynthMod.MODID, "tool_" + unlocalizedName);
     }
 
 }

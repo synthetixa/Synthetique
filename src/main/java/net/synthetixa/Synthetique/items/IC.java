@@ -11,8 +11,8 @@ public class IC extends Item {
         super();
 
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(CreativeTabs.tabRedstone);
-        this.setRegistryName(SynthMod.MODID, "integrated_circuit");
+        this.setCreativeTab(CreativeTabs.REDSTONE);
+        this.setRegistryName(SynthMod.MODID, "integrated_circuit_" + unlocalizedName);
     }
 
 }

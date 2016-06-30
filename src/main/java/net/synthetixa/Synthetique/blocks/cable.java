@@ -2,15 +2,13 @@ package net.synthetixa.Synthetique.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.synthetixa.Synthetique.SynthMod;
-import net.synthetixa.Synthetique.common.PropertyFloat;
 
 public class cable extends Block {
-
-    public PropertyFloat PITCH = PropertyFloat.create("pitch", 0.1F, 2.0F);
 
     public cable(Material material, String unlocalizedName) {
 
@@ -18,22 +16,21 @@ public class cable extends Block {
 
         this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(SynthMod.MODID, "cable");
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setCreativeTab(CreativeTabs.REDSTONE);
         this.setHardness(1.0F);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(PITCH, 0.1F));
 
     }
 
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(PITCH, Float.valueOf(meta));
+    @Override
+    public boolean isVisuallyOpaque() {
+        return false;
     }
 
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(PITCH).intValue();
+    @SideOnly(Side.CLIENT)
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, PITCH);
-    }
 
 }

@@ -14,9 +14,9 @@ public class OscillatorTileEntity extends TileEntity
     public static void changeSound(BlockPos pos, World worldIn) {
 
         if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(0)) {
-            oscillator.sound = SoundEvents.block_note_pling;
+            oscillator.sound = SoundEvents.BLOCK_NOTE_PLING;
         } else if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(1)) {
-            oscillator.sound = SoundEvents.block_note_snare;
+            oscillator.sound = SoundEvents.BLOCK_NOTE_SNARE;
         } else if (worldIn.getBlockState(pos).getValue(oscillator.TYPE).equals(2)) {
             oscillator.sound = null;
         }
@@ -34,10 +34,12 @@ public class OscillatorTileEntity extends TileEntity
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound){
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
         compound.setFloat("pitch", pitch);
+
+        return compound;
     }
 
     @Override

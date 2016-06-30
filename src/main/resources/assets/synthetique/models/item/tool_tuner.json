@@ -1,7 +1,7 @@
 {
-  "parent":"builtin/generated",
+  "parent": "item/generated",
   "textures": {
-    "layer0":"synthetique:items/resistor"
+    "layer0":"synthetique:items/tuner"
   },
   "display": {
     "thirdperson": {
