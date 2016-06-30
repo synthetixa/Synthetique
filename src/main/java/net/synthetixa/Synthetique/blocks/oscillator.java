@@ -13,7 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
@@ -21,12 +20,13 @@ import net.minecraft.world.World;
 import net.synthetixa.Synthetique.SynthMod;
 import net.synthetixa.Synthetique.items.synthItems;
 
+import static net.minecraft.init.SoundEvents.BLOCK_NOTE_PLING;
+import static net.minecraft.init.SoundEvents.BLOCK_NOTE_SNARE;
+
 public class oscillator extends Block implements ITileEntityProvider{
 
-    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 2); // 0 = Sine, 1 = Square, 2 = LFO (no sound)
+    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 2); // 0 = Sine, 1 = Square, 2 = LFO (WIP)
     public static boolean isPowered;
-    public static SoundEvent sound;
-    public static float pitch;
 
     public oscillator(Material material, String unlocalizedName) {
         super(material);
@@ -76,24 +76,22 @@ public class oscillator extends Block implements ITileEntityProvider{
             Block blockUp = worldIn.getBlockState(upPos).getBlock();
             Block blockDown = worldIn.getBlockState(downPos).getBlock();
 
-            OscillatorTileEntity.changeSound(pos, world);
-
             if (worldIn.getBlockState(pos).getValue(TYPE).equals(0) || worldIn.getBlockState(pos).getValue(TYPE).equals(1)) {
 
                 if (isPowered) {
 
                     if (blockNorth.equals(synthBlocks.speaker)) {
-                        world.playSound(null, northPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, northPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockSouth.equals(synthBlocks.speaker)) {
-                        world.playSound(null, southPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, southPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockWest.equals(synthBlocks.speaker)) {
-                        world.playSound(null, westPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, westPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockEast.equals(synthBlocks.speaker)) {
-                        world.playSound(null, eastPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, eastPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockUp.equals(synthBlocks.speaker)) {
-                        world.playSound(null, upPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, upPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     } else if (blockDown.equals(synthBlocks.speaker)) {
-                        world.playSound(null, downPos, sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
+                        world.playSound(null, downPos, oscillatorTileEntity.sound, SoundCategory.BLOCKS, 3.0F, oscillatorTileEntity.pitch);
                     }
                 }
             } else if (worldIn.getBlockState(pos).getValue(TYPE).equals(2)) {
@@ -106,19 +104,27 @@ public class oscillator extends Block implements ITileEntityProvider{
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 
         if (heldItem != null) {
+
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
             if (ItemStack.areItemsEqual(new ItemStack(synthItems.screwdriver), heldItem)) {
-                if (state.getValue(TYPE).equals(0)) {
-                    playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from Sine Wave to Square Wave. (this will make sound)"));
-                    worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 1));
-                } else if (state.getValue(TYPE).equals(1)) {
-                    playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from Square Wave to LFO. (this won't make sound)"));
-                    worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 2));
-                } else if (state.getValue(TYPE).equals(2)) {
-                    playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from LFO to Sine Wave. (this will make sound)"));
-                    worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 1));
+                if (tileentity instanceof TileEntity) {
+                    OscillatorTileEntity oscillatorTileEntity = (OscillatorTileEntity) tileentity;
+                    if (state.getValue(TYPE).equals(0)) {
+                        playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from Sine Wave to Square Wave. (this will make sound)"));
+                        worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 1));
+                        oscillatorTileEntity.changeSound(BLOCK_NOTE_SNARE);
+                    } else if (state.getValue(TYPE).equals(1)) {
+                        playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from Square Wave to LFO. (this won't make sound)"));
+                        worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 2));
+                        oscillatorTileEntity.changeSound(null);
+                    } else if (state.getValue(TYPE).equals(2)) {
+                        playerIn.addChatComponentMessage(new TextComponentString("Switching oscillator state from LFO to Sine Wave. (this will make sound)"));
+                        worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(TYPE, 0));
+                        oscillatorTileEntity.changeSound(BLOCK_NOTE_PLING);
+                    }
                 }
             } else if (ItemStack.areItemsEqual(new ItemStack(synthItems.tuner), heldItem)) {
-                TileEntity tileentity = worldIn.getTileEntity(pos);
 
                 if (tileentity instanceof TileEntity) {
 
