@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "type=0": { "model": "synthetique:oscillator_sine" },
-    "type=1": { "model": "synthetique:oscillator_sine" },
-    "type=2": { "model": "synthetique:oscillator_sine" }
-
-  }
-}

@@ -11,7 +11,6 @@ public class synthBlocks {
     public static Block speaker;
     public static Block patchCable;
 
-
     public static void initBlocks() {
 
         oscillator = new oscillator(Material.IRON, "oscillator");
@@ -25,6 +24,10 @@ public class synthBlocks {
         GameRegistry.register(patchCable);
         GameRegistry.register(new ItemBlock(patchCable), patchCable.getRegistryName());
 
+    }
+
+    public static void initTileEntities() {
+        GameRegistry.registerTileEntity(OscillatorTileEntity.class, "oscillator");
     }
 
 }

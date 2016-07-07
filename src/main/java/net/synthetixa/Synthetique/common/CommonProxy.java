@@ -20,6 +20,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event)
     {
         synthCrafting.initCrafting();
+        synthBlocks.initTileEntities();
     }
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)

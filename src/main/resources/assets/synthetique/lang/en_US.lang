@@ -1,6 +1,4 @@
-tile.oscillator.name=Square Wave Voltage Controlled Oscillator
-tile.oscillator_saw.name=Saw Wave Voltage Controlled Oscillator
-tile.oscillator_sine.name=Sine Wave Voltage Controlled Oscillator
+tile.oscillator.name=Voltage Controlled Oscillator
 tile.speaker.name=Speaker
 tile.cable.name=Patch Cable
 
